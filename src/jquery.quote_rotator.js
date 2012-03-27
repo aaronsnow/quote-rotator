@@ -36,6 +36,10 @@
         var rotation_active = true;
         var rotation_speed = config.rotation_speed < 2000 ? 2000 : config.rotation_speed;
         
+        // manual pause/resume events: e.g., $("#quote-list").quote_rotator().trigger("pause");
+        $(this).bind("pause", function() { rotation_active = false; });
+        $(this).bind("resume", function() { rotation_active = true; });
+
         var add_active_class = function() {
           var active_class_not_already_applied = quote_list.find('li.active').length === 0;
           if (config.randomize_first_quote) {
